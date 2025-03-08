@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de Currículos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .flash {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Envio de Currículos</h1>
+
+    <!-- Exibindo mensagens de sucesso ou erro -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Formulário de envio -->
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="unidade">Selecione a Unidade:</label>
+            <select name="unidade" id="unidade" required>
+                <option value="">Selecione</option>
+                <option value="Mocambinho">Mocambinho</option>
+                <option value="Promorar">Promorar</option>
+                <option value="Dirceu">Dirceu</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="funcao">Selecione a Função:</label>
+            <select name="funcao" id="funcao" required>
+                <option value="">Selecione</option>
+                <option value="Auxiliar Pizzaiolo">Auxiliar Pizzaiolo</option>
+                <option value="Pizzaiolo">Pizzaiolo</option>
+                <option value="Auxiliar Chapeiro">Auxiliar Chapeiro</option>
+                <option value="Chapeiro">Chapeiro</option>
+                <option value="Auxiliar Cozinha">Auxiliar Cozinha</option>
+                <option value="Atendente">Atendente</option>
+                <option value="Operador de caixa">Operador de caixa</option>
+                <option value="Estoquista">Estoquista</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Entregador">Entregador</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="curriculo">Anexar Currículo:</label>
+            <input type="file" name="curriculo" id="curriculo" accept=".pdf, .docx, .png, .jpg, .jpeg" required>
+        </div>
+
+        <button type="submit">Enviar Currículo</button>
+    </form>
+</div>
+
+</body>
+</html>
